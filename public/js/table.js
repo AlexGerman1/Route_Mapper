@@ -1,30 +1,47 @@
 // this adds rows to a table
 
-var Table = function(route, color) {
+var Table = function(route, clr, remove) {
   this.route = route;
-  this.color = color;
+  this.clr = clr;
+  this.remove = remove;
+};
+
+Table.prototype.header = function() {
+  var table = document.getElementById('table');
+  var tableHead = table.createTHead();
+  tableHead.id = 'Head';
+  var row = tableHead.insertRow();
+  var head1 = row.insertCell();
+  var head2 = row.insertCell();
+  var head3 = row.insertCell();
+
+  head1.innerHTML = 'Route';
+  head2.innerHTML = 'Color';
+  head3.innerHTML = 'Remove';
 }
 
 Table.prototype.newRow = function() {
-  var tableBody = document.getElementById('tableBody');
-  var tr = tableBody.insertRow();
-  var td = tr.insertCell();
-  tr();
-  tr.id = 'rowOne';
-  for (var i = 0; i < 3; i++) {
-    td();
-    td.id = 'cell ' + i;
-  }
+  var table = document.getElementById('table');
+  var tableBody = table.createTBody();
+  tableBody.id = 'Body';
+  var row = tableBody.insertRow();
+  var cell1 = row.insertCell();
+  var cell2 = row.insertCell();
+  var cell3 = row.insertCell();
 
-  var route = document.getElementById('cell 1');
-  route.createTextNode(this.route);
-  var color = document.getElementById('cell 2');
-  color.createTextNode(this.color);
-  var del = document.getElementById('cell 3');
-  del.createTextNode('delete');
+  cell1.innerHTML = this.route;
+  cell2.innerHTML = this.clr;
+  cell3.innerHTML = this.remove;
+
 }
 
-var bus = new Table (67, 'green');
-bus.newRow();
+var tableHead = new Table ();
+tableHead.header();
 
+var bus1 = new Table (67, 'green', 'delete');
+var bus2 = new Table (34, 'blue', 'delete');
+var bus3 = new Table (49, 'yellow', 'delete');
+bus1.newRow();
+bus2.newRow();
+bus3.newRow();
 
