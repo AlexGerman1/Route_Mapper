@@ -1,0 +1,59 @@
+body{
+	position: relative;
+	
+}
+#head{
+	height: 125px;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 10px;
+}
+#main{
+	padding: 10px;
+	margin: 20px;
+	color:#fffaed;
+	border: 1px solid blue;
+	height: 700px;
+}
+#one{
+	border: 1px solid blue;
+	display: inline-block;
+}
+
+#route{
+	height: 200px;
+	width: 250px;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 20px;
+
+}
+
+#login{
+	height: 200px;
+	width: 250px;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 20px;
+}
+
+#map{
+	display: inline-block;
+	height:600px;
+	width:600px;
+	border: 1px solid black;
+	padding:10px;
+	margin: 10px;
+	float: right;
+}
+
+#foot{
+	height: 75px;
+	width: 100%;
+	border: 1px solid black;
+	position: relative;
+	bottom: -200px;
+	padding: 10px;
+	
+	
+}
