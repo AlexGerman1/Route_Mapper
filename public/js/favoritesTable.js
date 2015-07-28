@@ -1,5 +1,18 @@
 //Table to store favorite routes
 
+var favorites;
+
+//retreive local storage
+function retreiveLocalStorage() {
+  var retrievedData = localStorage.getItem('favoriteRoute');
+  if(retrievedData){
+    favorites = JSON.parse(retrievedData);
+  }
+    console.log('retrieved ' + favorites);
+};
+
+
+//table constructor
 var FavoritesTable = function(route, removeIndex) {
   this.route = route;
   this.removeIndex = removeIndex;
@@ -31,17 +44,28 @@ FavoritesTable.prototype.newRow = function() {
   //could also add an indexing method using this strategy ...
   // left.dataset.number = imgs[2];
   // right.dataset.number = imgs[3];
-
-
 }
+
+retreiveLocalStorage();
 
 var tableHead = new FavoritesTable ();
 tableHead.header();
 
-var bus1 = new FavoritesTable (67, 3);
-var bus2 = new FavoritesTable (34, 4);
-var bus3 = new FavoritesTable (49, 5);
-bus1.newRow();
-bus2.newRow();
-bus3.newRow();
+var i;
+
+function render() {
+  for (i = 0; i < favorites.length; i++){
+    var temp = new FavoritesTable (favorites[i], i);
+    temp.newRow();
+  }
+};
+render();
+
+function renderNewRow() {
+  var temp2 = new FavoritesTable (f, i);
+  i++;
+  temp2.newRow();
+}
+
+
 
