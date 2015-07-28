@@ -12,7 +12,7 @@
     <link rel="icon" href="img/bus3.jpeg" type="image/jpeg" sizes="16x16">
 
   <meta charset="UTF-8">
-  <title>Route_Tracker</title>
+  <title>Route Mapper</title>
   <link href="css/app.css" type="text.css" rel="stylesheet"/>
  </head>
  <body>
@@ -35,12 +35,18 @@
 
 
  		 <div id="route">
- 			 <h3>Search For A Route</h3>
+        <form id="routeConnector">
+         	<legend>Search For A Route</legend>
+            <p>
+              <label for="route">Route:</label>
+              <input type="text" id="routeSearch" placeholder="Enter Route #">
+            </p>
+            <p> 
+              <input type="submit" value="Add to map">
+            </p>
+        </form>
 
-        <input type="search" id="routeSearch" placeholder="Enter Route #">
-
-        <button onclick="myFunction()">Search</button>
-         <input id = "newFavorite" type = "text"></br>
+        <input id = "newFavorite" type = "text"></br>
         <button id="btn" type="button" value="click">Add Favorite</button></div>
     
  		 <div id="login">

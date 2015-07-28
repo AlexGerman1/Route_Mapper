@@ -47,34 +47,36 @@ mapController.searchRoute = function(number) {
       return routes.features[i];
     }
   };
-  return "no such route found";
-};  // close function
+  alert( "no such route found");
+};  // close  search function
 
 // adds a route to the map
 mapController.addRoute = function (routeObject) {
   // find a color that isn't being used
-  routeColor = this.findColor();
-  routeObject.properties.color = routeColor;
-
-  // convert geoJSON to leaflet layer
-  var routeLayer = L.geoJson(routeObject, {
-    style: {"color": routeColor},
-    onEachFeature: function (feature, layer) {
-      layer.bindPopup("Route: " + feature.properties.ROUTE);
-    }
-  });
-
-  // store both the geojson route and the leaflet layer in an array for later reference
-  var combinedObject = { routeObject: routeObject, layerObject: routeLayer};
-  this.displayedMapLayers.push(combinedObject);
+  if (typeof routeObject === "object") {
+    routeColor = this.findColor();
+    routeObject.properties.color = routeColor;
   
-  //add the new route to the layercontrols
-  this.updateLayerControls(routeLayer, routeObject.properties.ROUTE);
+    // convert geoJSON to leaflet layer
+    var routeLayer = L.geoJson(routeObject, {
+      style: {"color": routeColor},
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup("Route: " + feature.properties.ROUTE);
+      }   
+    })  
 
-  // call function to update displayed table
-  // ------------ here ------------
-  routeLayer.addTo(this.map);
-};
+    // store both the geojson route and the leaflet layer in an array for later reference
+    var combinedObject = { routeObject: routeObject, layerObject: routeLayer};
+    this.displayedMapLayers.push(combinedObject);
+    
+    //add the new route to the layercontrols
+    this.updateLayerControls(routeLayer, routeObject.properties.ROUTE);
+  
+    // call function to update displayed table
+    // ------------ here ------------
+    routeLayer.addTo(this.map);
+  }
+}; // close addRoute function
 
 mapController.setColorAvailable = function(color) {
   for (var i = 0; i < this.colorArray.length; i++) {
@@ -108,7 +110,7 @@ mapController.removeRoute = function (layerObject, stringName) {
   };
   // and remove it from the displayed table
   // --------   here -------------
-};
+}; // close remove function
 
 mapController.overlayMaps = {};
 mapController.layersControl;
@@ -126,17 +128,25 @@ mapController.updateLayerControls = function (layerObject, stringName) {
   
 };
 
-//searchForm = document.getElementById('');
+mapController.addNew = function(event) {
+  event.preventDefault();
+  var routeNumber = document.getElementById('routeSearch').value;
+  var routeObject = mapController.searchRoute(routeNumber);
+  mapController.addRoute(routeObject);
+};
+
+var searchForm = document.getElementById('routeConnector');
+searchForm.addEventListener('submit', mapController.addNew, false);
 
 
 
 //test code to set up some routes for testing
 
-var test = mapController.searchRoute(36);
-mapController.addRoute(test);
+// var test = mapController.searchRoute(36);
+// mapController.addRoute(test);
 
-var test2 = mapController.searchRoute(40);
-mapController.addRoute(test2);
+// var test2 = mapController.searchRoute(40);
+// mapController.addRoute(test2);
 
-var test3 = mapController.searchRoute(70);
-mapController.addRoute(test3);
+// var test3 = mapController.searchRoute(70);
+// mapController.addRoute(test3);
