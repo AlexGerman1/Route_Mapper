@@ -17,7 +17,7 @@ body{
 header{
 	margin:0px;
 }
-img{
+#topLogo{
 	height:50px;
 	width:200px;
 	background-color: #ffffff;
@@ -36,18 +36,21 @@ ul {
     list-style-type: none;
     /*margin-top: 60px;*/
     padding: 0;
-
-
 }
 
 li {
     display: inline;
     margin:15px;
 }
+#appName{
+	font-size: 50px;
+	float:right;
+	margin: 0px;
+}
 #main{
 	padding: 10px;
 	margin: 20px;
-	margin-top: 100px;
+	margin-top: 60px;
 	background-color:#fffaed;
 	border: 1px solid blue;
 	height: 700px;
@@ -105,7 +108,10 @@ li {
 	box-shadow: 4px 5px 8px 3px #777777;
 }
 #stripes{
-	width:800px;
+	width: 100%;
+}
+#curves{
+	width: 98%;
 }
 
 #foot{
@@ -116,20 +122,19 @@ li {
 	bottom: -200px;
 	padding: 10px;
 	background-color: #879ac9;
-<<<<<<< HEAD
+
 }
 #footImage{
 	height:50px;
 	width:200px;
-	/*background-color: #ffffff;*/
+	background-color: #ffffff;
 	margin: 0px;
 	padding: 0px;
 }
 #bottomLogo{
 	float: right;
-	padding-top: 10px
-=======
+	padding-top: 10px;
+	margin-right: 50px;
 
->>>>>>> 664ebb3efa0a0ecf9b88dd9ddbb1825e14293775
 
 }
