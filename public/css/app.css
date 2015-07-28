@@ -1,50 +1,100 @@
 body{
 	position: relative;
-	
+	background-color: #fffaed;
+}
+*{
+	font-family: 'Roboto Slab', serif;
 }
 #head{
 	height: 125px;
 	border: 1px solid black;
-	padding: 10px;
+	padding: 0px;
 	margin: 10px;
+	background-image: url("../img/bridge2.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+img{
+	height:50px;
+	width:200px;
+	background-color: #ffffff;
+}
+#menu{
+	height:50px;
+	background-color: #879ac9;
+}
+
+ul {
+	color: #fffaed;
+    list-style-type: none;
+    margin-top: 60px;
+    padding: 0;
+
+}
+
+li {
+    display: inline;
+    margin:15px;
 }
 #main{
 	padding: 10px;
 	margin: 20px;
-	color:#fffaed;
+	margin-top: 100px;
+	background-color:#fffaed;
 	border: 1px solid blue;
 	height: 700px;
 }
 #one{
+	height:700px;
 	border: 1px solid blue;
+	border-radius: 4px;
 	display: inline-block;
+	background-color: #879ac9;
+	box-shadow: inset 0 0 10px #777777;
+
 }
 
 #route{
 	height: 200px;
 	width: 250px;
-	border: 1px solid black;
+	border: 1px solid #242942;
 	padding: 10px;
 	margin: 20px;
+	background-color: #fffaed;
+	border-radius: 4px;
+	box-shadow: inset 0 0 10px #777777;
 
 }
 
 #login{
 	height: 200px;
 	width: 250px;
-	border: 1px solid black;
+	border: 1px solid #242942;
 	padding: 10px;
 	margin: 20px;
+	background-color: #fffaed;
+	border-radius: 4px;
+	box-shadow: inset 0 0 10px #777777;
 }
-
+#user{
+	margin:10px;
+}
+#email{
+	margin: 10px;
+}
+#password{
+	margin: 10px;
+}
 #map{
 	display: inline-block;
-	height:600px;
-	width:600px;
-	border: 1px solid black;
+	height:90%;
+	width:50%;
+	border: 5px solid #242942;
 	padding:10px;
 	margin: 10px;
 	float: right;
+	border-radius: 6px;
+	box-shadow: 4px 5px 8px 3px #777777;
 }
 
 #foot{
@@ -54,6 +104,7 @@ body{
 	position: relative;
 	bottom: -200px;
 	padding: 10px;
+	background-color: #879ac9;
 	
 	
 }
