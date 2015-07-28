@@ -4,21 +4,22 @@ var mapController = new Object();
 mapController.colorArray = [{inUse: false, color: "#0000FF"}, // blue 
                             {inUse: false, color: "#FF0000"}, // red
                             {inUse: false, color: "#008000"}, // green
-                            {inUse: false, color: "#FFA500"}, // orange
-                            {inUse: false, color: "#800080"}]; // purple
+                            {inUse: false, color: "#800080"}, // purple
+                            {inUse: false, color: "#f0f"}]; // pink
 
 mapController.displayedMapLayers = [];
 
-mapController.map = L.map('map').setView([47.61, -122.33], 13);
+//instantiate the map and set it to lat/long, zoom level
+mapController.map = L.map('map').setView([47.61, -122.33], 12);
 
 //use this code for pretty map tiles from Mapbox
-//L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 //    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 //    maxZoom: 18,
 //    //id: 'mringel.9a3079e3',
-//    id: 'mapbox.emerald'
+//    id: 'mapbox.emerald',
 //    accessToken: 'pk.eyJ1IjoibXJpbmdlbCIsImEiOiIwYjM4MzFkY2E3ZTEyNzAwNGM4M2VjODZlODlkNWZhNiJ9.EJlJwl9IJoBptQV_EARdYA'
-//}).addTo(mapController.map);
+// }).addTo(mapController.map);
 
 
 // Use this code for ugly map tiles straight from OSM
@@ -43,7 +44,7 @@ mapController.findColor = function() {
 // based on the route number.  Returns the route geoJSON object
 mapController.searchRoute = function(number) {
   for (var i = 0; i < routes.features.length; i++) {
-    if (routes.features[i].properties.ROUTE == number) {
+    if (routes.features[i].properties.RTE_NUM == number) {
       return routes.features[i];
     }
   };
@@ -61,7 +62,7 @@ mapController.addRoute = function (routeObject) {
     var routeLayer = L.geoJson(routeObject, {
       style: {"color": routeColor},
       onEachFeature: function (feature, layer) {
-        layer.bindPopup("Route: " + feature.properties.ROUTE);
+        layer.bindPopup("Route: " + feature.properties.RTE_NUM);
       }   
     })  
 
@@ -70,7 +71,7 @@ mapController.addRoute = function (routeObject) {
     this.displayedMapLayers.push(combinedObject);
     
     //add the new route to the layercontrols
-    this.updateLayerControls(routeLayer, routeObject.properties.ROUTE);
+    this.updateLayerControls(routeLayer, routeObject.properties.RTE_NUM);
   
     // call function to update displayed table
     // ------------ here ------------
@@ -90,7 +91,7 @@ mapController.setColorAvailable = function(color) {
 //get layerObject based on route number
 mapController.getLayerObject = function(getroute) {
   for (var i = 0; i < this.displayedMapLayers.length; i++) {
-    if (this.displayedMapLayers[i].routeObject.properties.ROUTE == getroute) {
+    if (this.displayedMapLayers[i].routeObject.properties.RTE_NUM == getroute) {
       return this.displayedMapLayers[i].layerObject;
     }
   };
@@ -119,7 +120,7 @@ mapController.layersControl;
 mapController.updateLayerControls = function (layerObject, stringName) {
   //if this is the first layer added, create the control
   if (this.displayedMapLayers.length == 1) {
-    var key = this.displayedMapLayers[0].routeObject.properties.ROUTE;
+    var key = this.displayedMapLayers[0].routeObject.properties.RTE_NUM;
     this.overlayMaps[key] = this.displayedMapLayers[0].layerObject;
     this.layersControl = new L.control.layers({},this.overlayMaps).addTo(this.map);
   }
@@ -129,11 +130,13 @@ mapController.updateLayerControls = function (layerObject, stringName) {
   
 };
 
+// take a number passed by a submit event and add the route to the map
 mapController.addNew = function(event) {
   event.preventDefault();
   var routeNumber = document.getElementById('routeSearch').value;
   var routeObject = mapController.searchRoute(routeNumber);
   mapController.addRoute(routeObject);
+  searchForm.reset();
 };
 
 var searchForm = document.getElementById('routeConnector');
