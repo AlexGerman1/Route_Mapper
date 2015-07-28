@@ -138,9 +138,5 @@ mapController.addRoute(test);
 var test2 = mapController.searchRoute(40);
 mapController.addRoute(test2);
 
-console.log(mapController.displayedMapLayers);
-
-
-
 var test3 = mapController.searchRoute(70);
 mapController.addRoute(test3);
