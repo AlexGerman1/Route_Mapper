@@ -3,28 +3,44 @@
  <head>
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
   <meta charset="UTF-8">
   <title>Route_Tracker</title>
   <link href="css/app.css" type="text.css" rel="stylesheet"/>
  </head>
  <body>
  	<header id="head">
-
+    <img src="img/KClogo-horiz-black-lg.gif"/>
  	</header>
  	<nav id="menu">
  		<ul>
  			<li>Home</li>
  			<li>Sign-up</li>
  			<li>About</li>
- 			<li>Terms & Conditions</li>
- 		</nav>
+ 			<li>Favorites</li>
+ 	</nav>
  	<div id="main">
  		<div id="one">
- 			<div id="route">
- 			 <input type="submit" value="Submit">
- 			</div>
- 			<div id="login"></div>
+ 		 <div id="route">
+ 			 <h3>Search For A Route</h3>
+
+        <input type="search" id="routeSearch" placeholder="Enter Route #">
+
+        <button onclick="myFunction()">Search</button>
+
+ 		 </div>
+ 		 <div id="login">
+        <h3>New User</h3>
+
+        <input type="Name" id="user" placeholder="Name"><br>
+
+        <input type="email" id="email" placeholder="email"><br>
+
+        <input type="password" id="password" placeholder="password"><br>
+
+
+        <button onclick="myFunction()">Done</button>
+      </div>
  		</div>
  		<div id="map"></div>
  	</div>
@@ -32,12 +48,12 @@
  	<footer id="foot"></footer>
 
 
-<!--   <div id="map"></div> -->
 
-    <table id="table">
-    </table>
 
-    <script type="text/javascript" src="./js/table.js"></script>
+  <table id="table">
+  </table>
+
+  <script type="text/javascript" src="./js/table.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
   <script type="text/javascript" src="js/routes.js"></script>
   <script type="text/javascript" src="js/map.js"></script>
