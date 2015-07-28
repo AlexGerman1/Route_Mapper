@@ -28,7 +28,7 @@ mapController.searchRoute = function(number) {
   for (var i = 0; i < routes.features.length; i++) {
     if (routes.features[i].properties.ROUTE == number) {
       return routes.features[i];
-    }   
+    }
   };
   return "no such route found";
 };  // close function
@@ -50,7 +50,7 @@ mapController.addRoute = function (routeObject) {
   // call function to update displayed table
   // ------------ here ------------
   routeLayer.addTo(this.map);
-}; 
+};
 
 // removeRoute requires a layerObject, obtained from displayedMapLayersArray
 mapController.removeRoute = function (layerObject) {
