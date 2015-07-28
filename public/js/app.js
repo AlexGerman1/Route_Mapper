@@ -1,17 +1,24 @@
 var favorites = [];
-var btn = document.getElementById('btn');
+var btn = document.getElementById('favoriteButton');
+var f;
 
-btn.addEventListener("click", function(){
-  var f =  document.getElementById("newFavorite").value;
+favoriteButton.addEventListener("click", function(){
+  f =  document.getElementById("favoriteRoute").value;
   console.log(favorites + " event listener");
       if(!(checkForDuplicate(f, favorites))){
-      if(localStorage.getItem('newFavorite')) {
+        if (f === '') {
+          console.log('you did not enter a value');
+        }
+      else if(localStorage.getItem('favoriteRoute')) {
+
       favorites.push(f);
       populateFavorites();
+      renderNewRow();
     } else {
       console.log(f);
       favorites.push(f);
       populateFavorites();
+      renderNewRow();
     }
   }
 });
@@ -22,14 +29,14 @@ function checkForDuplicate(item, ary){
   return false;
 }
 function populateFavorites(){
-  localStorage.setItem('newFavorite', JSON.stringify(favorites));
+  localStorage.setItem('favoriteRoute', JSON.stringify(favorites));
   console.log('populated');
 }
 function retrieveFavorites(){
-  var retrievedData = localStorage.getItem('newFavorite');
+  var retrievedData = localStorage.getItem('favoriteRoute');
   if(retrievedData){
     favorites = JSON.parse(retrievedData);
   }
-  console.log('retrieved ' + favorites);
+  // console.log('retrieved ' + favorites);
 }
 retrieveFavorites();
