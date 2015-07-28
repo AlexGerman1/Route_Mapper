@@ -116,6 +116,7 @@ li {
 	bottom: -200px;
 	padding: 10px;
 	background-color: #879ac9;
+<<<<<<< HEAD
 }
 #footImage{
 	height:50px;
@@ -127,5 +128,8 @@ li {
 #bottomLogo{
 	float: right;
 	padding-top: 10px
+=======
+
+>>>>>>> 664ebb3efa0a0ecf9b88dd9ddbb1825e14293775
 
 }

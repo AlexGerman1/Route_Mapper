@@ -1,10 +1,18 @@
- <!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
  <head>
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+
+
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+<<<<<<< HEAD
     <link rel="icon" href="img/bus3.jpeg" type="image/jpeg" sizes="16x16">
+=======
+
+>>>>>>> 664ebb3efa0a0ecf9b88dd9ddbb1825e14293775
   <meta charset="UTF-8">
   <title>Route_Tracker</title>
   <link href="css/app.css" type="text.css" rel="stylesheet"/>
@@ -21,19 +29,29 @@
  			<li>Favorites</li>
  	</nav>
  	<div id="main">
+       <div id="map"></div>
+
  		<div id="one">
+
+
+
+
  		 <div id="route">
  			 <h3>Search For A Route</h3>
 
         <input type="search" id="routeSearch" placeholder="Enter Route #">
 
         <button onclick="myFunction()">Search</button>
-
- 		 </div>
+         <input id = "newFavorite" type = "text"></br>
+        <button id="btn" type="button" value="click">Add Favorite</button></div>
+    
  		 <div id="login">
         <h3>Routes</h3>
         <table id="table">
   </table>
+
+        
+
 
         <!-- <input type="Name" id="user" placeholder="Name"><br>
 
@@ -42,10 +60,13 @@
         <input type="password" id="password" placeholder="password"><br>
  -->
 
-        <button onclick="myFunction()">Set</button>
-      </div>
+
+      
+ 		 </div>
+
  		</div>
- 		<div id="map"></div>
+
+ 		
  	</div>
   <div id="stripes">
     <img src="img/stripes.png"/>
@@ -56,15 +77,11 @@
   </footer>
 
 
-
-
-  <!-- <table id="table">
-  </table> -->
-
   <script type="text/javascript" src="./js/table.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+
   <script type="text/javascript" src="js/routes.js"></script>
   <script type="text/javascript" src="js/map.js"></script>
-
+  <script src="js/app.js"></script>
  </body>
 </html>
