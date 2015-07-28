@@ -14,7 +14,7 @@ FavoritesTable.prototype.header = function() {
   var head2 = row.insertCell();
 
   head1.innerHTML = 'Route';
-  head2.innerHTML = 'Remove';
+  head2.innerHTML = '';
 }
 
 FavoritesTable.prototype.newRow = function() {

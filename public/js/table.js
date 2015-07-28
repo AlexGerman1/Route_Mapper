@@ -17,7 +17,7 @@ Table.prototype.header = function() {
 
   head1.innerHTML = 'Route';
   head2.innerHTML = 'Color';
-  head3.innerHTML = 'Remove';
+  head3.innerHTML = '';
 }
 
 Table.prototype.newRow = function() {
