@@ -1,12 +1,17 @@
 var mapController = new Object();
-mapController.colorArray = ["#0000FF", "#FF0000", "#008000", "#FFA500", "#800080"];
-//colors in array            [blue,    red,      green,  orange, purple]
+
+// colors that will be used on the map
+mapController.colorArray = [{inUse: false, color: "#0000FF"}, // blue 
+                            {inUse: false, color: "#FF0000"}, // red
+                            {inUse: false, color: "#008000"}, // green
+                            {inUse: false, color: "#FFA500"}, // orange
+                            {inUse: false, color: "#800080"}]; // purple
 
 mapController.displayedMapLayers = [];
 
 mapController.map = L.map('map').setView([47.61, -122.33], 13);
 
-//use this code for pretty tiles from Mapbox
+//use this code for pretty map tiles from Mapbox
 //L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 //    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 //    maxZoom: 18,
@@ -16,14 +21,26 @@ mapController.map = L.map('map').setView([47.61, -122.33], 13);
 //}).addTo(mapController.map);
 
 
-// Use this code for map tiles straight from OSM
+// Use this code for ugly map tiles straight from OSM
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
     maxZoom: 18
 }).addTo(mapController.map);
 
+// finds a color that's not in use.  If all colors are in
+// use, returns black.
+mapController.findColor = function() {
+  for (var i = 0; i < this.colorArray.length; i++) {
+    if (this.colorArray[i].inUse === false) {
+      this.colorArray[i].inUse = true;
+      return this.colorArray[i].color;
+    }
+    };
+    return "#000000";
+};
 
-
+// function to seach all routes in the geoJSON data for a route 
+// based on the route number.  Returns the route geoJSON object
 mapController.searchRoute = function(number) {
   for (var i = 0; i < routes.features.length; i++) {
     if (routes.features[i].properties.ROUTE == number) {
@@ -33,14 +50,21 @@ mapController.searchRoute = function(number) {
   return "no such route found";
 };  // close function
 
+// adds a route to the map
 mapController.addRoute = function (routeObject) {
-  var routeColor = this.colorArray[(this.displayedMapLayers.length % 5)];
+  // find a color that isn't being used
+  routeColor = this.findColor();
+  routeObject.properties.color = routeColor;
+
+  // convert geoJSON to leaflet layer
   var routeLayer = L.geoJson(routeObject, {
     style: {"color": routeColor},
     onEachFeature: function (feature, layer) {
-      layer.bindPopup("Route:" + feature.properties.ROUTE);
+      layer.bindPopup("Route: " + feature.properties.ROUTE);
     }
   });
+
+  // store both the geojson route and the leaflet layer in an array for later reference
   var combinedObject = { routeObject: routeObject, layerObject: routeLayer};
   this.displayedMapLayers.push(combinedObject);
   
@@ -52,12 +76,33 @@ mapController.addRoute = function (routeObject) {
   routeLayer.addTo(this.map);
 }; 
 
+mapController.setColorAvailable = function(color) {
+  for (var i = 0; i < this.colorArray.length; i++) {
+    if (this.colorArray[i].color == color) {
+      this.colorArray[i].inUse = false;
+    }
+  };
+}
+
+//get layerObject based on route number
+mapController.getLayerObject = function(getroute) {
+  for (var i = 0; i < this.displayedMapLayers.length; i++) {
+    if (this.displayedMapLayers[i].routeObject.properties.ROUTE == getroute) {
+      return this.displayedMapLayers[i].layerObject;
+    }
+  };
+}
+
 // removeRoute requires a layerObject, obtained from displayedMapLayersArray
-mapController.removeRoute = function (layerObject) {
+mapController.removeRoute = function (layerObject, stringName) {
   this.map.removeLayer(layerObject);
-  //also remove it from the array of displayed maps
+  this.layersControl.removeLayer(layerObject, stringName);
+
+  // remove it from the array of displayed maps
   for (var i = 0; i < this.displayedMapLayers.length; i++) {
     if (this.displayedMapLayers[i].layerObject === layerObject) {
+      var layerColor = this.displayedMapLayers[i].routeObject.properties.color;
+      this.setColorAvailable(layerColor);
       this.displayedMapLayers.splice(i,1);
     }
   };
