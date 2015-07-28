@@ -4,6 +4,7 @@
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="img/bus3.jpeg" type="image/jpeg" sizes="16x16">
   <meta charset="UTF-8">
   <title>Route_Tracker</title>
   <link href="css/app.css" type="text.css" rel="stylesheet"/>
@@ -30,28 +31,35 @@
 
  		 </div>
  		 <div id="login">
-        <h3>New User</h3>
+        <h3>Routes</h3>
+        <table id="table">
+  </table>
 
-        <input type="Name" id="user" placeholder="Name"><br>
+        <!-- <input type="Name" id="user" placeholder="Name"><br>
 
         <input type="email" id="email" placeholder="email"><br>
 
         <input type="password" id="password" placeholder="password"><br>
+ -->
 
-
-        <button onclick="myFunction()">Done</button>
+        <button onclick="myFunction()">Set</button>
       </div>
  		</div>
  		<div id="map"></div>
  	</div>
+  <div id="stripes">
+    <img src="img/stripes.png"/>
+  </div>
+ 	<footer id="foot">
+    <img id="footImage" src="img/KClogo-horiz-black-lg.gif"/>
+    <p id="bottomLogo"> © King County 2015 </p>
+  </footer>
 
- 	<footer id="foot"></footer>
 
 
 
-
-  <table id="table">
-  </table>
+  <!-- <table id="table">
+  </table> -->
 
   <script type="text/javascript" src="./js/table.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
