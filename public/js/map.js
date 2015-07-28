@@ -41,17 +41,23 @@ mapController.addRoute = function (routeObject) {
       layer.bindPopup("Route:" + feature.properties.ROUTE);
     }
   });
-  this.displayedMapLayers.push(routeLayer);
+  var combinedObject = { routeObject: routeObject, layerObject: routeLayer};
+  this.displayedMapLayers.push(combinedObject);
+  
+  //add the new route to the layercontrols
+  this.updateLayerControls(routeLayer, routeObject.properties.ROUTE);
+
   // call function to update displayed table
   // ------------ here ------------
   routeLayer.addTo(this.map);
 }; 
 
-mapController.removeRoute = function (routeObject) {
-  this.map.removeLayer(routeObject);
+// removeRoute requires a layerObject, obtained from displayedMapLayersArray
+mapController.removeRoute = function (layerObject) {
+  this.map.removeLayer(layerObject);
   //also remove it from the array of displayed maps
   for (var i = 0; i < this.displayedMapLayers.length; i++) {
-    if (this.displayedMapLayers[i] === routeObject) {
+    if (this.displayedMapLayers[i].layerObject === layerObject) {
       this.displayedMapLayers.splice(i,1);
     }
   };
@@ -59,6 +65,34 @@ mapController.removeRoute = function (routeObject) {
   // --------   here -------------
 };
 
+mapController.overlayMaps = {};
+mapController.layersControl;
+
+mapController.updateLayerControls = function (layerObject, stringName) {
+  //if this is the first layer added, create the control
+  if (this.displayedMapLayers.length == 1) {
+    var key = this.displayedMapLayers[0].routeObject.properties.ROUTE;
+    this.overlayMaps[key] = this.displayedMapLayers[0].layerObject;
+    this.layersControl = new L.control.layers({},this.overlayMaps).addTo(this.map);
+  }
+  else {
+    this.layersControl.addOverlay(layerObject, stringName)
+  }
+  
+};
+
+
+//test code to set up some routes for testing
+
+var test = mapController.searchRoute(36);
+mapController.addRoute(test);
+
+var test2 = mapController.searchRoute(40);
+mapController.addRoute(test2);
+
+console.log(mapController.displayedMapLayers);
 
 
 
+var test3 = mapController.searchRoute(70);
+mapController.addRoute(test3);
