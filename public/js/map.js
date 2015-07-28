@@ -126,6 +126,9 @@ mapController.updateLayerControls = function (layerObject, stringName) {
   
 };
 
+//searchForm = document.getElementById('');
+
+
 
 //test code to set up some routes for testing
 
