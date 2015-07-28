@@ -27,10 +27,10 @@ Table.prototype.newRow = function() {
   var row = tableBody.insertRow();
   var cell1 = row.insertCell();
   var cell2 = row.insertCell();
+  cell2.style.backgroundColor = this.clr;
   var cell3 = row.insertCell();
 
   cell1.innerHTML = this.route;
-  cell2.innerHTML = this.clr;
   cell3.innerHTML = this.remove;
 
 }
@@ -38,9 +38,9 @@ Table.prototype.newRow = function() {
 var tableHead = new Table ();
 tableHead.header();
 
-var bus1 = new Table (67, 'green', 'delete');
-var bus2 = new Table (34, 'blue', 'delete');
-var bus3 = new Table (49, 'yellow', 'delete');
+var bus1 = new Table (67, '#458B00', 'delete');
+var bus2 = new Table (34, '#00B2EE', 'delete');
+var bus3 = new Table (49, '#EEEE00', 'delete');
 bus1.newRow();
 bus2.newRow();
 bus3.newRow();
