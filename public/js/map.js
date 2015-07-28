@@ -75,6 +75,7 @@ mapController.addRoute = function (routeObject) {
     // call function to update displayed table
     // ------------ here ------------
     routeLayer.addTo(this.map);
+    this.map.fitBounds(routeLayer);
   }
 }; // close addRoute function
 
