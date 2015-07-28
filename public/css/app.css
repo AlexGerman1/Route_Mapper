@@ -9,17 +9,24 @@ body{
 	height: 125px;
 	border: 1px solid black;
 	padding: 0px;
-	margin: 10px;
+	margin: 0px;
 	background-image: url("../img/bridge2.jpg");
 	background-size: 100%;
 	background-repeat: no-repeat;
+}
+header{
+	margin:0px;
 }
 img{
 	height:50px;
 	width:200px;
 	background-color: #ffffff;
+	margin: 0px;
+	padding: 0px;
 }
 #menu{
+	margin-top: 0px;
+	padding:16px;
 	height:50px;
 	background-color: #879ac9;
 }
@@ -27,8 +34,9 @@ img{
 ul {
 	color: #fffaed;
     list-style-type: none;
-    margin-top: 60px;
+    /*margin-top: 60px;*/
     padding: 0;
+
 
 }
 
@@ -96,6 +104,9 @@ li {
 	border-radius: 6px;
 	box-shadow: 4px 5px 8px 3px #777777;
 }
+#stripes{
+	width:800px;
+}
 
 #foot{
 	height: 75px;
@@ -105,6 +116,20 @@ li {
 	bottom: -200px;
 	padding: 10px;
 	background-color: #879ac9;
+<<<<<<< HEAD
+}
+#footImage{
+	height:50px;
+	width:200px;
+	/*background-color: #ffffff;*/
+	margin: 0px;
+	padding: 0px;
+}
+#bottomLogo{
+	float: right;
+	padding-top: 10px
+=======
 
+>>>>>>> 664ebb3efa0a0ecf9b88dd9ddbb1825e14293775
 
 }
