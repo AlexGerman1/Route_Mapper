@@ -24,7 +24,7 @@ mapController.layersControl = new L.control.layers({},{}).addTo(mapController.ma
 
 
 // Use this code for ugly map tiles straight from OSM
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
     maxZoom: 18
 }).addTo(mapController.map);
