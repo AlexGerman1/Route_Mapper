@@ -11,6 +11,7 @@ mapController.displayedMapLayers = [];
 
 //instantiate the map and set it to lat/long, zoom level
 mapController.map = L.map('map').setView([47.61, -122.33], 12);
+mapController.layersControl = new L.control.layers({},{}).addTo(mapController.map);
 
 //use this code for pretty map tiles from Mapbox
 // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -71,8 +72,8 @@ mapController.addRoute = function (routeObject) {
     this.displayedMapLayers.push(combinedObject);
     
     //add the new route to the layercontrols
-    this.updateLayerControls(routeLayer, routeObject.properties.RTE_NUM);
-  
+    this.layersControl.addOverlay(routeLayer, routeObject.properties.ROUTE);
+
     // call function to update displayed table
     generateNewRow(routeObject.properties.RTE_NUM, routeColor);
     routeLayer.addTo(this.map);
@@ -110,25 +111,8 @@ mapController.removeRoute = function (layerObject, stringName) {
       this.displayedMapLayers.splice(i,1);
     }
   };
-  // and remove it from the displayed table
-  // --------   here -------------
 }; // close remove function
 
-mapController.overlayMaps = {};
-mapController.layersControl;
-
-mapController.updateLayerControls = function (layerObject, stringName) {
-  //if this is the first layer added, create the control
-  if (this.displayedMapLayers.length == 1) {
-    var key = this.displayedMapLayers[0].routeObject.properties.RTE_NUM;
-    this.overlayMaps[key] = this.displayedMapLayers[0].layerObject;
-    this.layersControl = new L.control.layers({},this.overlayMaps).addTo(this.map);
-  }
-  else {
-    this.layersControl.addOverlay(layerObject, stringName)
-  }
-  
-};
 
 // take a number passed by a submit event and add the route to the map
 mapController.addNew = function(event) {
