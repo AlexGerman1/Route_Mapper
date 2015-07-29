@@ -37,6 +37,5 @@ function retrieveFavorites(){
   if(retrievedData){
     favorites = JSON.parse(retrievedData);
   }
-  // console.log('retrieved ' + favorites);
 }
 retrieveFavorites();

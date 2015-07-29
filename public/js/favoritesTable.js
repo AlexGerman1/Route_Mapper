@@ -1,5 +1,4 @@
 //Table to store favorite routes
-
 var favorites;
 
 //retreive local storage
@@ -13,9 +12,8 @@ function retreiveLocalStorage() {
 
 
 //table constructor
-var FavoritesTable = function(route, removeIndex) {
+var FavoritesTable = function(route) {
   this.route = route;
-  this.removeIndex = removeIndex;
 };
 
 FavoritesTable.prototype.header = function() {
@@ -39,11 +37,19 @@ FavoritesTable.prototype.newRow = function() {
   var cell2 = row.insertCell();
 
   cell1.innerHTML = this.route;
-  cell2.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.removeIndex + '">';
+  cell2.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.route + '">';
 
   //could also add an indexing method using this strategy ...
   // left.dataset.number = imgs[2];
   // right.dataset.number = imgs[3];
+
+  var deleteListener = document.getElementById('deleteButton' + this.route);
+  var route = this.route
+  deleteListener.addEventListener('click', function(){
+    var tableBodyToBeDeleted = deleteListener.parentNode.parentNode.parentNode;
+    var containerEl = tableBodyToBeDeleted.parentNode;
+    containerEl.removeChild(tableBodyToBeDeleted);
+  })
 }
 
 retreiveLocalStorage();
@@ -51,20 +57,20 @@ retreiveLocalStorage();
 var tableHead = new FavoritesTable ();
 tableHead.header();
 
-var i;
 
+var i;
 function render() {
   for (i = 0; i < favorites.length; i++){
-    var temp = new FavoritesTable (favorites[i], i);
+    var temp = new FavoritesTable (favorites[i]);
     temp.newRow();
   }
 };
 render();
 
 function renderNewRow() {
-  var temp2 = new FavoritesTable (f, i);
-  i++;
+  var temp2 = new FavoritesTable (f);
   temp2.newRow();
+  i++;
 }
 
 
