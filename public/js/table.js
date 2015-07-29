@@ -1,9 +1,9 @@
 // this adds rows to a table
 
-var Table = function(route, clr, removeIndex) {
-  this.route = route;
-  this.clr = clr;
-  this.removeIndex = removeIndex;
+var Table = function(routeNumber, color) {
+  this.routeNumber = routeNumber;
+  this.color = color;
+
 };
 
 Table.prototype.header = function() {
@@ -27,21 +27,29 @@ Table.prototype.newRow = function() {
   var row = tableBody.insertRow();
   var cell1 = row.insertCell();
   var cell2 = row.insertCell();
-  cell2.style.backgroundColor = this.clr;
+  cell2.style.backgroundColor = this.color;
   var cell3 = row.insertCell();
 
-  cell1.innerHTML = this.route;
-  cell3.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.removeIndex + '">';
+  cell1.innerHTML = this.routeNumber;
+  cell3.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.routeNumber + '">';
 
 }
+
+
+
 
 var tableHead = new Table ();
 tableHead.header();
 
-var bus1 = new Table (67, '#458B00', 7);
-var bus2 = new Table (34, '#00B2EE', 8);
-var bus3 = new Table (49, '#EEEE00', 9);
-bus1.newRow();
-bus2.newRow();
-bus3.newRow();
+function generateNewRow(routeNumber, color) {
+  var addRow = new Table (routeNumber, color);
+  addRow.newRow();
+}
+
+// var bus1 = new Table (67, '#458B00');
+// var bus2 = new Table (34, '#00B2EE');
+// var bus3 = new Table (49, '#EEEE00');
+// bus1.newRow();
+// bus2.newRow();
+// bus3.newRow();
 
