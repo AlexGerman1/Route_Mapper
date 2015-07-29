@@ -74,7 +74,7 @@ mapController.addRoute = function (routeObject) {
     this.updateLayerControls(routeLayer, routeObject.properties.RTE_NUM);
   
     // call function to update displayed table
-    // ------------ here ------------
+    generateNewRow(routeObject.properties.RTE_NUM, routeColor);
     routeLayer.addTo(this.map);
     this.map.fitBounds(routeLayer);
   }
