@@ -3,7 +3,6 @@
 var Table = function(routeName, color) {
   this.routeName = routeName;
   this.color = color;
-  // this.deleteListener;
 
 };
 
