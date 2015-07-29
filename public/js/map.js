@@ -49,35 +49,41 @@ mapController.searchRoute = function(number) {
       return routes.features[i];
     }
   };
-  alert( "no such route found");
+  alert( "No such route found.");
 };  // close  search function
 
 // adds a route to the map
 mapController.addRoute = function (routeObject) {
   // find a color that isn't being used
-  if (typeof routeObject === "object") {
-    routeColor = this.findColor();
-    routeObject.properties.color = routeColor;
-  
-    // convert geoJSON to leaflet layer
-    var routeLayer = L.geoJson(routeObject, {
-      style: {"color": routeColor},
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup("Route: " + feature.properties.RTE_NUM);
-      }   
-    })  
 
-    // store both the geojson route and the leaflet layer in an array for later reference
-    var combinedObject = { routeObject: routeObject, layerObject: routeLayer};
-    this.displayedMapLayers.push(combinedObject);
+  //  insert logic to check for duplicates here
+  // ----------------------------------------
+
+  if (!(this.checkForDuplicateLayer(routeObject.properties.RTE_NUM))) {
+    if (typeof routeObject === "object") {
+      routeColor = this.findColor();
+      routeObject.properties.color = routeColor;
     
-    //add the new route to the layercontrols
-    this.layersControl.addOverlay(routeLayer, routeObject.properties.ROUTE);
+      // convert geoJSON to leaflet layer
+      var routeLayer = L.geoJson(routeObject, {
+        style: {"color": routeColor},
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup("Route: " + feature.properties.RTE_NUM);
+        }   
+      })  
 
-    // call function to update displayed table
-    generateNewRow(routeObject.properties.RTE_NUM, routeColor);
-    routeLayer.addTo(this.map);
-    this.map.fitBounds(routeLayer);
+      // store both the geojson route and the leaflet layer in an array for later reference
+      var combinedObject = { routeObject: routeObject, layerObject: routeLayer};
+      this.displayedMapLayers.push(combinedObject);
+      
+      //add the new route to the layercontrols
+      this.layersControl.addOverlay(routeLayer, routeObject.properties.ROUTE);
+
+      // call function to update displayed table
+      generateNewRow(routeObject.properties.RTE_NUM, routeColor);
+      routeLayer.addTo(this.map);
+      this.map.fitBounds(routeLayer);
+    }
   }
 }; // close addRoute function
 
@@ -87,7 +93,7 @@ mapController.setColorAvailable = function(color) {
       this.colorArray[i].inUse = false;
     }
   };
-}
+}; //close setColor Function
 
 //get layerObject based on route number
 mapController.getLayerObject = function(getroute) {
@@ -96,9 +102,9 @@ mapController.getLayerObject = function(getroute) {
       return this.displayedMapLayers[i].layerObject;
     }
   };
-}
+}; //close getLayerObject function
 
-// removeRoute requires a layerObject, obtained from displayedMapLayersArray
+// removeRoute requires a layerObject, obtained from displayedMapLayers Array
 mapController.removeRoute = function (layerObject, stringName) {
   this.map.removeLayer(layerObject);
   this.layersControl.removeLayer(layerObject, stringName);
@@ -113,6 +119,14 @@ mapController.removeRoute = function (layerObject, stringName) {
   };
 }; // close remove function
 
+mapController.addFavorites = function () {
+  retrieveFavorites();
+  for (var i = 0; i < favorites.length; i++) {
+    var routeNumber = favorites[i];
+    var routeObject = mapController.searchRoute(routeNumber);
+    mapController.addRoute(routeObject);
+  };
+}; // close addFavorites function
 
 // take a number passed by a submit event and add the route to the map
 mapController.addNew = function(event) {
@@ -123,18 +137,22 @@ mapController.addNew = function(event) {
   searchForm.reset();
 };
 
+mapController.checkForDuplicateLayer = function(routeNumber) {
+  for (var i = 0; i < this.displayedMapLayers.length; i++) {
+    if (routeNumber == this.displayedMapLayers[i].routeObject.properties.RTE_NUM) {
+      return true;
+    }
+  };
+  return false;
+};
+
+
+
 var searchForm = document.getElementById('routeConnector');
 searchForm.addEventListener('submit', mapController.addNew, false);
 
 
+var addFavoritesButton = document.getElementById('addFavoritesToMap');
+addFavoritesButton.addEventListener('click', mapController.addFavorites, false);
 
-//test code to set up some routes for testing
 
-// var test = mapController.searchRoute(36);
-// mapController.addRoute(test);
-
-// var test2 = mapController.searchRoute(40);
-// mapController.addRoute(test2);
-
-// var test3 = mapController.searchRoute(70);
-// mapController.addRoute(test3);
