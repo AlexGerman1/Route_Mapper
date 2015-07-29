@@ -1,7 +1,7 @@
 body{
 	position: relative;
 	background-color: #fffaed;
-	
+
 }
 *{
 	font-family: 'Roboto Slab', serif;
@@ -127,8 +127,6 @@ li {
 	width: 98%;
 	height:100%;
 	margin-top: -20px;
-
-
 }
 
 #foot{
@@ -147,6 +145,7 @@ li {
 	margin: 0px;
 	padding: 0px;
 }
+
 #bottomLogo{
 	float: right;
 	padding-top: 10px;
