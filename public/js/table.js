@@ -1,7 +1,7 @@
 // this adds rows to a table
 
-var Table = function(routeNumber, color) {
-  this.routeNumber = routeNumber;
+var Table = function(routeName, color) {
+  this.routeName = routeName;
   this.color = color;
   // this.deleteListener;
 
@@ -31,17 +31,17 @@ Table.prototype.newRow = function() {
   cell2.style.backgroundColor = this.color;
   var cell3 = row.insertCell();
 
-  cell1.innerHTML = this.routeNumber;
-  cell3.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.routeNumber + '">';
+  cell1.innerHTML = this.routeName;
+  cell3.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.routeName + '">';
 
-  var deleteListener = document.getElementById('deleteButton' + this.routeNumber);
-  var routeNumber = this.routeNumber
+  var deleteListener = document.getElementById('deleteButton' + this.routeName);
+  var routeName = this.routeName
   deleteListener.addEventListener('click', function(){
     var tableBodyToBeDeleted = deleteListener.parentNode.parentNode.parentNode;
     var containerEl = tableBodyToBeDeleted.parentNode;
     containerEl.removeChild(tableBodyToBeDeleted);
-    var layer = mapController.getLayerObject(routeNumber);
-    mapController.removeRoute(layer, routeNumber);
+    var layer = mapController.getLayerObject(routeName);
+    mapController.removeRoute(layer, routeName);
   })
 
 }; // close newRow function
