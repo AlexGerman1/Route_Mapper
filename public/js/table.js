@@ -3,6 +3,7 @@
 var Table = function(routeNumber, color) {
   this.routeNumber = routeNumber;
   this.color = color;
+  // this.deleteListener;
 
 };
 
@@ -33,7 +34,17 @@ Table.prototype.newRow = function() {
   cell1.innerHTML = this.routeNumber;
   cell3.innerHTML = '<input type="button" value="Delete" id="deleteButton' + this.routeNumber + '">';
 
-}
+  var deleteListener = document.getElementById('deleteButton' + this.routeNumber);
+  var routeNumber = this.routeNumber
+  deleteListener.addEventListener('click', function(){
+    var tableBodyToBeDeleted = deleteListener.parentNode.parentNode.parentNode;
+    var containerEl = tableBodyToBeDeleted.parentNode;
+    containerEl.removeChild(tableBodyToBeDeleted);
+    var layer = mapController.getLayerObject(routeNumber);
+    mapController.removeRoute(layer, routeNumber);
+  })
+
+}; // close newRow function
 
 
 
