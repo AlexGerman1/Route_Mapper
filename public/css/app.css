@@ -49,6 +49,8 @@ li {
 	margin: 0px;
 	margin-right: 130px;
 	margin-top:  10px;
+	color:242942;
+	text-shadow: 1px 1px 3px #242942;
 }
 #main{
 	padding: 10px;
@@ -117,6 +119,7 @@ li {
 	box-shadow: 4px 5px 8px 3px #777777;
 }
 #stripes{
+	margin-top: 30px;
 	width: 100%;
 	height: 180px;
 }
@@ -147,6 +150,55 @@ li {
 	float: right;
 	padding-top: 10px;
 	margin-right: 50px;
+}
+#about-us{
+	margin-top: 7%;
+}
+
+#john{
+	height:40%;
+	width:40%;
+}
+#john-bio{
+	width:50%;
+
+}
+
+#alex{
+	height:40%;
+	width:40%;
+}
+#alex-bio{
+	width: 50%;
+}
+
+#spencer{
+	height:40%;
+	width:40%;
+}
+#spencer-bio{
+	width:50%;
+}
+
+#matt{
+	height:40%;
+	width:40%;
+}
+#matt-bio{
+	width:50%;
+}
+
+
 
 
 }
+
+
+
+
+
+
+
+
+
+
