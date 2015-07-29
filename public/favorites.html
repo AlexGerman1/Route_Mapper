@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <link href="css/app.css" type="text.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="img/bus3.jpeg" type="image/jpeg" sizes="16x16">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>Route Mapper</title>
   </head>
   <body>
-
+    <header id="head">
+      <img id="topLogo" src="img/KClogo-horiz-black-lg.gif"/>
+    </header>
+    <nav id="menu">
+      <ul>
+        <li> <a href="index.html">Home</a> </li>
+        <li><a href="signup.html">Sign-up</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+      </ul>
+    </nav>
     <h1>Favorite Routes</h1>
-
     <!-- Search field and button -->
     <input type="text" id="favoriteRoute">
     <input type="button" value="Add Route" id="favoriteButton">
-
     <table id="favTable"></table>
+    <div id="stripes">
+      <img id="curves" src="img/stripes.png"/>
+    </div>
+    <footer id="foot">
+      <img id="footImage" src="img/KClogo-horiz-black-lg.gif"/>
+      <p id="bottomLogo"> © King County 2015 </p>
+    </footer>
     <script type="text/javascript" src="./js/favoritesTable.js"></script>
     <script type="text/javascript" src="./js/app.js"></script>
   </body>
