@@ -44,23 +44,26 @@ mapController.findColor = function() {
 // function to seach all routes in the geoJSON data for a route 
 // based on the route number.  Returns the route geoJSON object
 mapController.searchRoute = function(number) {
+  var searchResults = [];
   for (var i = 0; i < routes.features.length; i++) {
     if (routes.features[i].properties.RTE_NUM == number) {
-      return routes.features[i];
+      searchResults.push(routes.features[i]);
     }
   };
+  if (searchResults.length != 0) {
+    return searchResults;
+  } else {
   alert( "No such route found.");
+  }
 };  // close  search function
 
 // adds a route to the map
 mapController.addRoute = function (routeObject) {
-  // find a color that isn't being used
 
-  //  insert logic to check for duplicates here
-  // ----------------------------------------
-
-  if (!(this.checkForDuplicateLayer(routeObject.properties.RTE_NUM))) {
+  //  logic to check for duplicates here
+  if (!(this.checkForDuplicateLayer(routeObject.properties.ROUTE))) {
     if (typeof routeObject === "object") {
+      // find a color that isn't being used
       routeColor = this.findColor();
       routeObject.properties.color = routeColor;
     
@@ -80,7 +83,7 @@ mapController.addRoute = function (routeObject) {
       this.layersControl.addOverlay(routeLayer, routeObject.properties.ROUTE);
 
       // call function to update displayed table
-      generateNewRow(routeObject.properties.RTE_NUM, routeColor);
+      generateNewRow(routeObject.properties.ROUTE, routeColor);
       routeLayer.addTo(this.map);
       this.map.fitBounds(routeLayer);
     }
@@ -96,9 +99,9 @@ mapController.setColorAvailable = function(color) {
 }; //close setColor Function
 
 //get layerObject based on route number
-mapController.getLayerObject = function(getroute) {
+mapController.getLayerObject = function(getRouteName) {
   for (var i = 0; i < this.displayedMapLayers.length; i++) {
-    if (this.displayedMapLayers[i].routeObject.properties.RTE_NUM == getroute) {
+    if (this.displayedMapLayers[i].routeObject.properties.ROUTE == getRouteName) {
       return this.displayedMapLayers[i].layerObject;
     }
   };
@@ -123,8 +126,11 @@ mapController.addFavorites = function () {
   retrieveFavorites();
   for (var i = 0; i < favorites.length; i++) {
     var routeNumber = favorites[i];
-    var routeObject = mapController.searchRoute(routeNumber);
-    mapController.addRoute(routeObject);
+    var routeObjectArray = mapController.searchRoute(routeNumber);
+    for (var j = 0; j < routeObjectArray.length; j++) {
+      mapController.addRoute(routeObjectArray[j])
+    };
+    //mapController.addRoute(routeObject);
   };
 }; // close addFavorites function
 
@@ -132,14 +138,18 @@ mapController.addFavorites = function () {
 mapController.addNew = function(event) {
   event.preventDefault();
   var routeNumber = document.getElementById('routeSearch').value;
-  var routeObject = mapController.searchRoute(routeNumber);
-  mapController.addRoute(routeObject);
+  var routeObjectArray = mapController.searchRoute(routeNumber);
+  console.log(routeObjectArray);
+  for (var i = 0; i < routeObjectArray.length; i++) {
+    console.log("adding route to map");
+    mapController.addRoute(routeObjectArray[i]);
+  };
   searchForm.reset();
-};
+};  // close addNew function
 
-mapController.checkForDuplicateLayer = function(routeNumber) {
+mapController.checkForDuplicateLayer = function(routeName) {
   for (var i = 0; i < this.displayedMapLayers.length; i++) {
-    if (routeNumber == this.displayedMapLayers[i].routeObject.properties.RTE_NUM) {
+    if (routeName == this.displayedMapLayers[i].routeObject.properties.ROUTE) {
       return true;
     }
   };
@@ -154,5 +164,4 @@ searchForm.addEventListener('submit', mapController.addNew, false);
 
 var addFavoritesButton = document.getElementById('addFavoritesToMap');
 addFavoritesButton.addEventListener('click', mapController.addFavorites, false);
-
 
