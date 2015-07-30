@@ -47,7 +47,7 @@ li {
 	font-size: 50px;
 	float:right;
 	margin: 0px;
-	margin-right: 130px;
+	margin-right: 75px;
 	margin-top:  10px;
 	color:242942;
 	text-shadow: 1px 1px 3px #242942;
@@ -187,6 +187,18 @@ li {
 #matt-bio{
 	width:50%;
 }
+#imageHolder_404{
+	border: 1px solid black;
+	background-color: #d4dbff;
+	box-shadow: inset 0 0 10px #000000;
+}
+#image404{
+	margin-left: 12%;
+	margin-bottom: 5%;
+	box-shadow: 4px 5px 8px 3px #777777;
+
+}
+
 
 img#codefellows {
 	height:	200px;
@@ -226,8 +238,9 @@ img#mapbox {
 	float: left;
 	clear: both;
 }
-
-
+#addFavoritesToMap{
+	/*margin-top: 2px;*/
+}
 
 
 
