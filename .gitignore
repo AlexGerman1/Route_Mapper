@@ -1,3 +1,4 @@
 **/node_modules
 .eslintrc
 .eslintignore
+public/img/Thumbs.db
