@@ -156,7 +156,12 @@ mapController.checkForDuplicateLayer = function(routeName) {
   return false;
 };
 
-
+function retrieveFavorites(){
+  var retrievedData = localStorage.getItem('favoriteRoute');
+  if(retrievedData){
+    favorites = JSON.parse(retrievedData);
+  }
+}
 
 var searchForm = document.getElementById('routeConnector');
 searchForm.addEventListener('submit', mapController.addNew, false);
