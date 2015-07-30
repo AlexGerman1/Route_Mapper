@@ -187,11 +187,22 @@ li {
 #matt-bio{
 	width:50%;
 }
-
-
-
+#imageHolder_404{
+	border: 1px solid black;
+	background-color: #d4dbff;
+	box-shadow: inset 0 0 10px #000000;
+}
+#image404{
+	margin-left: 12%;
+	margin-bottom: 5%;
+	box-shadow: 4px 5px 8px 3px #777777;
 
 }
+
+
+
+
+
 
 
 
