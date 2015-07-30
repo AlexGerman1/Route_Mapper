@@ -12,22 +12,25 @@ mapController.displayedMapLayers = [];
 //instantiate the map and set it to lat/long, zoom level
 mapController.map = L.map('map').setView([47.61, -122.33], 12);
 mapController.layersControl = new L.control.layers({}, {}).addTo(mapController.map);
+//mapController.geocoder = new L.Control.geocoder().addTo(mapController.map);
 
 //use this code for pretty map tiles from Mapbox
-// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-//    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-//    maxZoom: 18,
-//    //id: 'mringel.9a3079e3',
-//    id: 'mapbox.emerald',
-//    accessToken: 'pk.eyJ1IjoibXJpbmdlbCIsImEiOiIwYjM4MzFkY2E3ZTEyNzAwNGM4M2VjODZlODlkNWZhNiJ9.EJlJwl9IJoBptQV_EARdYA'
-// }).addTo(mapController.map);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+   maxZoom: 18,
+   //id: 'mringel.9a3079e3',
+   id: 'mapbox.emerald',
+   accessToken: 'pk.eyJ1IjoibXJpbmdlbCIsImEiOiIwYjM4MzFkY2E3ZTEyNzAwNGM4M2VjODZlODlkNWZhNiJ9.EJlJwl9IJoBptQV_EARdYA'
+}).addTo(mapController.map);
 
 
 // Use this code for ugly map tiles straight from OSM
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-    maxZoom: 18
-}).addTo(mapController.map);
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+//     maxZoom: 18
+// }).addTo(mapController.map);
+
+L.Control.geocoder().addTo(mapController.map);
 
 // finds a color that's not in use.  If all colors are in
 // use, returns black.
