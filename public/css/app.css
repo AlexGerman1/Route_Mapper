@@ -233,6 +233,14 @@ div#about-RouteMapper img#kingcounty {
 	margin: 5%;
 }
 
+img#mapbox {
+	height: 150px;
+	float: left;
+	clear: both;
+}
+#addFavoritesToMap{
+	/*margin-top: 2px;*/
+}
 
 
 
