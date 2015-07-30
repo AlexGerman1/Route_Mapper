@@ -1,5 +1,4 @@
 //Table to store favorite routes
-var favorites;
 
 //retreive local storage
 function retreiveLocalStorage() {
@@ -49,7 +48,17 @@ FavoritesTable.prototype.newRow = function() {
     var tableBodyToBeDeleted = deleteListener.parentNode.parentNode.parentNode;
     var containerEl = tableBodyToBeDeleted.parentNode;
     containerEl.removeChild(tableBodyToBeDeleted);
+
+  //put in the code to remove the appropriate 'thing' from local storage
+    for (var r = 0; r < favorites.length; r++) {
+      if (route === favorites[r]) {
+        favorites.splice(r, 1);
+      }
+    };
+    localStorage.setItem('favoriteRoute', JSON.stringify(favorites));
+
   })
+
 }
 
 retreiveLocalStorage();
@@ -71,7 +80,7 @@ function renderNewRow() {
   var temp2 = new FavoritesTable (f);
   temp2.newRow();
   i++;
-}
+};
 
 
 
