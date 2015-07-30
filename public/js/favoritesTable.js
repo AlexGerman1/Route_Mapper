@@ -6,7 +6,6 @@ function retreiveLocalStorage() {
   if(retrievedData){
     favorites = JSON.parse(retrievedData);
   }
-    console.log('retrieved ' + favorites);
 };
 
 

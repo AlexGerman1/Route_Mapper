@@ -1,12 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/app.css" type="text.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
     <link rel="icon" href="img/bus3.jpeg" type="image/jpeg" sizes="16x16">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <meta charset="UTF-8">
     <title>Route Mapper</title>
   </head>
@@ -21,8 +18,33 @@
         <li><a href="about.html">About Us</a></li>
         <li><a href="aboutRM.html">About Route Mapper</a></li>
       </ul>
-      <p id="appName">ROUTE MAPPER</p>
+      <p id="appName">BUS ROUTE MAPPER</p>
     </nav>
+
+    <div id="about-RouteMapper">
+      <p><img id="codefellows" src="img/CodeFellows.png"/>
+      This project was cmpleted as part of the "Introduction to Computer Science and Web Development Bootcamp" offered by Code Fellows.  The project team would like to thank our instructor, Sam Hamm, and our TA's Dale Corns and Emre Surmeli.
+      </p>
+      
+      <p><img id="javascript" src="img/js-logo-badge-512.png"/>
+      Bus Route Mapper is implemented entirely in the browser with JavaScript.  The map is created using the Leaflet.js library and the Mapbox and OpenStreetMap APIs.  Bus route data is stored locally as a geoJSON file.
+      </p>
+
+      
+      <p><img id="leaflet" src="img/leaflet_logo.png"/>
+        Leaflet is an open-source JavaScript library for mobile-friendly interactive maps.  Tutorials and documentation can be found on their <a href="http://leafletjs.com/">website</a>.
+      </p>
+
+      <p><img id="mapbox" src="img/Mapbox_Logo.png"/>
+        We're using map tiles supplied by Mapbox for performance and beauty.  As poor Code Fellows students, our map uses the free plan.  If the map tiles don't appear to be coming from Mapbox it's because we ran out of service on our free tier.
+      </p>
+
+      
+      <p id><img id="kingcounty" src="img/Kingcounty.gif"/>
+        All bus route data for this project came from King County GIS Center and is used under license.  Data is provided "as-is" with no guarantee of accuracy or thoroughness.  This bus route data was last updated by King County on 4/26/2015.
+      </p>
+    </div>
+
     <div id="stripes">
       <img id="curves" src="img/stripes.png"/>
     </div>
@@ -30,10 +52,5 @@
       <img id="footImage" src="img/KClogo-horiz-black-lg.gif"/>
       <p id="bottomLogo"> © King County 2015 </p>
     </footer>
-    <script type="text/javascript" src="./js/table.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-    <script type="text/javascript" src="js/routes.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-    <script src="js/app.js"></script>
   </body>
 </html>
