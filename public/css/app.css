@@ -188,9 +188,43 @@ li {
 	width:50%;
 }
 
+img#codefellows {
+	height:	200px;
+	float: right;
+}
 
+div#about-RouteMapper {
+	margin-top: 15%;
+}
 
+img#javascript {
+	height: 200px;
+	float: left;
+}
 
+div#about-RouteMapper>* {
+	margin: 10%;
+	width: 60%;
+	min-height: 10px;
+}
+
+img#leaflet {
+	height: 150px;
+	float: right;
+	clear: both;
+}
+
+div#about-RouteMapper img#kingcounty {
+	height: 130px;
+	float:left;
+	clear: both;
+	margin: 5%;
+}
+
+img#mapbox {
+	height: 150px;
+	float: left;
+	clear: both;
 }
 
 
