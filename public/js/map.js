@@ -1,17 +1,17 @@
 var mapController = new Object();
 
 // colors that will be used on the map
-mapController.colorArray = [{inUse: false, color: "#0000FF"}, // blue 
-                            {inUse: false, color: "#FF0000"}, // red
-                            {inUse: false, color: "#008000"}, // green
-                            {inUse: false, color: "#800080"}, // purple
-                            {inUse: false, color: "#f0f"}]; // pink
+mapController.colorArray = [{inUse: false, color: '#0000FF'}, // blue 
+                            {inUse: false, color: '#FF0000'}, // red
+                            {inUse: false, color: '#008000'}, // green
+                            {inUse: false, color: '#800080'}, // purple
+                            {inUse: false, color: '#f0f'}]; // pink
 
 mapController.displayedMapLayers = [];
 
 //instantiate the map and set it to lat/long, zoom level
 mapController.map = L.map('map').setView([47.61, -122.33], 12);
-mapController.layersControl = new L.control.layers({},{}).addTo(mapController.map);
+mapController.layersControl = new L.control.layers({}, {}).addTo(mapController.map);
 
 //use this code for pretty map tiles from Mapbox
 // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
