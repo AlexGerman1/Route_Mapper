@@ -23,8 +23,15 @@
     </nav>
     <h1>Favorite Routes</h1>
     <!-- Search field and button -->
-    <input type="text" id="favoriteRoute">
-    <input type="button" value="Add Route" id="favoriteButton">
+    <form id="addToFavorites">
+      <p>
+        <label for="favorite">Favorite</label>
+        <input type="text" id="addFavorite" placeholder="Add a Favorite">
+      </p>
+      <p>
+        <input type="submit" value="Add to Favorites">
+      </p>
+    </form>
     <table id="favTable"></table>
     <div id="stripes">
       <img id="curves" src="img/stripes.png"/>

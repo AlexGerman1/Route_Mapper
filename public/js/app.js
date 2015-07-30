@@ -1,9 +1,12 @@
 var favorites = [];
-var favoriteButton = document.getElementById('favoriteButton');
+var favoriteButton = document.getElementById('addToFavorites');
 var f;
 
-favoriteButton.addEventListener("click", function(){
-  f =  document.getElementById("favoriteRoute").value;
+favoriteButton.addEventListener("submit", function(e) {
+  e.preventDefault();
+  f =  document.getElementById("addFavorite").value;
+  favoriteButton.reset();
+
       if(!(checkForDuplicate(f, favorites))){
         if (f === '') {
           // console.log('you did not enter a value');
